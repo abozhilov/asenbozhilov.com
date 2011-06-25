@@ -1,0 +1,509 @@
+		<h1>Javascript identifiers</h1>
+		
+		<ul class="contents">
+			<li><a href="#introduction">Introduction</a></li>
+			<li>
+				<a href="#reserved_words">Reserved words from the language</a>
+				<ul>
+					<li><a href="#keywords">Keywords</a></li>	
+					<li><a href="#future_reserved">Reserved words for future use</a></li>
+					<li><a href="#bool_literal">Boolean literal</a></li>
+					<li><a href="#null_literal">Null literal</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#ids_name">Identifier names</a>
+				<ul>
+					<li>
+						<a href="#identifier_start">First character in identifier</a>
+						<ul>
+							<li><a href="#underscore">Underscore sign "_"</a></li>	
+							<li><a href="#dollar_sign">$</a></li>
+							<li><a href="#unicode_letter">Letter from the Unicode table</a></li>
+							<li><a href="#unicode_escape_sequences">Unicode escape sequence</a></li>
+						</ul>						
+					</li>	
+					<li><a href="#identifier_part">The rest of the identifier name</a></li>
+				</ul>
+			</li>
+			
+			
+			<li>
+				<a href="#property_names">Names and object property accessing</a>
+				<ul>
+					<li><a href="#dot_notation">Dot notation</a></li>	
+					<li><a href="#square_bracket">Square bracket notation</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#object_literals">Object initialization ({ })</a>
+				<ul>
+					<li><a href="#oi_property_name">Prоperty name in object literal</a></li>
+				</ul>
+			</li>
+			<li><a href="#conclusion">Conclusion</a></li>
+			<li><a href="#literature">Useful materials</a></li>
+		</ul>		
+		
+		<h2 id="introduction">Introduction</h2>
+		<blockquote>
+			<dl>
+				<dt><strong>Definition:</strong></dt>
+				<dd>An identifier is regarded as a value which is unique in relation to all the other identifiers in a system.</dd>
+			</dl>
+		</blockquote>
+		<p>
+			Different systems determine different rules for identifier validity values. They can be figures, sequences of various characters or a combination of both. Identifiers are applied in all spheres of life. We use them mainly when we want to distinguish clearly between similar objects. We can use postal codes as an example, or country names and many others which are a part of our everyday life. The abbreviation for identifier in Latin characters, is "ID".
+		</p>
+		<p>
+			In high - level programming languages, identifiers are mostly used when naming variables, functions, object properties and others. They give programmers an easy opportunity to name different data structures and use them in various language structures. 
+		</p>
+		<p>
+			Javascript makes no exclusion and identifiers are used for: 
+		</p>
+		<ul>
+			<li>Variable names</li>
+			<li>Function names</li> 
+			<li>Names of formal parameters of functions</li>
+			<li>As a part of label structures</li>
+			<li>Object property names</li>
+		</ul>
+		<p>
+			Javascript applies the Unicode standard, version 2.1 or a later version. A UTF-16 coding is used for representing each of the program characters. 
+		</p>
+		<p>
+			In order to define a variable or a function, a valid identifier must be used according to the rules of  ECMA-262 standard. 
+		</p>
+		<pre class="code">var foo; 
+function bar(){}</pre>
+		<p>
+		Identifiers (names) validity will be verified in the process of the syntax analysis of the program. If they prove invalid, the interpreter will send an error message of SyntaxError type, and this will terminate the running of the program. 
+		</p>
+
+		<pre class="code">var 2; <span class="comment">//SyntaxError</span></pre>
+		<p>
+		Being well acquainted with the syntax rules of ECMA-262 standard enables us to create stable programs. 
+		</p>
+		<blockquote>
+			<dl>
+				<dt><strong>ECMA-262 3rd edition. Section 7.6 Identifiers</strong></dt> 
+				<dt>Identifier ::</dt>
+					<dd>IdentifierName but not ReservedWord</dd>
+			</dl>
+		</blockquote>
+		<h2 id="reserved_words">Reserved words from the language</h2>
+		<p>
+			Reserved words are entities with special meaning to the interpreter. They are used for a distinct differentiation of various language structures and they are admitted at precisely determined positions, acc. to the syntax rules of the language. These words cannot be used as identifiers.<br> 
+			In Javascript they are divided into 4 types:
+		</p>
+		<h3 id="keywords">Keywords</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>break</td>
+				<td>else</td>
+				<td>new</td>
+				<td>var</td>
+				<td>case</td>
+			</tr>
+			<tr>
+				<td>finally</td>
+				<td>return</td>
+				<td>void</td>
+				<td>catch</td>
+				<td>for</td>
+			</tr>
+			<tr>
+				<td>switch</td>
+				<td>while</td>
+				<td>continue</td>
+				<td>function</td>
+				<td>this</td>
+			</tr>
+			<tr>
+				<td>with</td>
+				<td>default</td>
+				<td>if</td>
+				<td>throw</td>
+				<td>delete</td>
+			</tr>
+			<tr>
+				<td>in</td>
+				<td>try</td>
+				<td>do</td>
+				<td>instanceof</td>
+				<td>typeof</td>
+			</tr>
+		</table>
+		
+		<h3 id="future_reserved">Reserved words for future use</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>abstract</td>
+				<td>enum</td>
+				<td>int</td>
+				<td>short</td>
+				<td>boolean</td>
+			</tr>
+			<tr>
+				<td>export</td>
+				<td>interface</td>
+				<td>static</td>
+				<td>byte</td>
+				<td>extends</td>
+			</tr>
+			<tr>
+				<td>long</td>
+				<td>super</td>
+				<td>char</td>
+				<td>final</td>
+				<td>native</td>
+			</tr>
+			<tr>
+				<td>synchronized</td>
+				<td>class</td>
+				<td>float</td>
+				<td>package</td>
+				<td>throws</td>
+			</tr>
+			<tr>
+				<td>const</td>
+				<td>goto</td>
+				<td>private</td>
+				<td>transient</td>
+				<td>debugger</td>
+			</tr>
+			<tr>
+				<td>implements</td>
+				<td>protected</td>
+				<td>volatile</td>
+				<td>double</td>
+				<td>import</td>
+			</tr>
+			<tr>
+				<td>public</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<h3 id="bool_literal">Boolean literal</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>true</td>
+				<td>false</td>
+			</tr>
+		</table>
+
+		<h3 id="null_literal">Null literal</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>null</td>
+			</tr>
+		</table>
+
+		
+		<p>
+			Each of the following examples for identifiers will display a syntax error because reserved words are used at the positions where the interpreter expects a valid identifier: 
+		</p>
+
+		<pre class="code">var if; <span class="comment">//SyntaxError</span>
+var super; <span class="comment">//SyntaxError</span>
+var true; <span class="comment">//SyntaxError</span></pre>
+		
+		<p>
+		In the following example, the three identifiers are valid: 
+		</p>
+		
+		<pre class="code">var IF;
+var SUPER;
+var TRUE;</pre>
+
+		<p>
+		The reason for this is the sensitivity of the Javascript interpreter towards the case of the characters. The three identifiers are not reserved words because they are displayed in a different way from the words in the above table. In ECMA-262 implementations, two identifiers are considered to be the same only when they are displayed with the same sequence of Unicode values for each character.  
+		</p>
+		
+		<pre class="code">var \u0066\u006F\u006F = true;
+print(foo); <span class="comment">//true</span></pre>
+
+		<h2 id="ids_name">Identifier names</h2>
+		<p>
+Identifier names may consist of one or more characters. The documentation does not impose any restrictions concerning the maximum length of identifiers.<br> 
+ECMA-262 divides the rules concerning identifier names, in two sections.  
+		</p>
+		<ul>
+			<li>Characters admitted at the beginning of the identifier</li> 
+			<li>Characters admitted in the rest of the name</li>
+		</ul>
+		<p>
+All characters which can be used as initial characters in an identifier name, are also admitted in the rest of the name. The opposite is wrong. 
+		</p>
+		<pre class="code">var $2$; <span class="comment">//valid identifier</span>
+var 2$2; <span class="comment">//SyntaxError</span></pre>
+		
+		<h3 id="identifier_start">Initial characters in identifiers</h3>
+		<p>The following characters can be used as initial characters in identifiers:</p>
+		
+		<h4 id="underscore">Underscore sign "_"</h4>
+		<p>
+			In Javascript there are no modifiers for object property accessing. The regular underscore sign is used by programmers as an initial character in the name of a given property, to indicate that the user of the code is not advised to manipulate this property because in case of doing so, they might disturb the correct function of the program. In other words, the underscore sign at the beginning is a pseudo emulation of the "private" modifier. 
+		</p>
+
+		<h4 id="dollar_sign">$</h4>
+		<p>
+The symbol of the American dollar and the Argentine peso is also used as an initial character in the identifier name. ECMA-262-3 recommends that this symbol be used as an initial character in automatic generated codes only. Most Javascript libraries use it in a different way in spite of the recommendations of the documentation.  	
+		</p>
+
+		<h4 id="unicode_letter">A letter from the Unicode table</h4>
+		<p>
+The Unicode standard classifies different characters in separate categories. These categories are used to put together characters which are close in their meaning. In Javascript, a letter from the Unicode table is considered one of the characters which comes under the following Unicode categories: 
+		</p>
+		<ul>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lu/list.htm">Uppercase letter (Lu)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Ll/list.htm">Lowercase letter (Ll)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lt/list.htm">Titlecase letter (Lt)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lm/list.htm">Modifier letter (Lm)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lo/list.htm">Other letter (Lo)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Nl/list.htm">Letter number (Nl)</a></li>
+		</ul>
+		<p>
+			Each of the characters in these groups can be used as initial characters in identifiers.  
+		</p>
+
+
+		<h4 id="unicode_escape_sequences">Unicode escape sequence</h4>
+		<p>
+In Javascript a character can be displayed both via its graphical representation and its value in the Unicode table. This is admitted at precisely determined positions:   
+		</p>
+		<ul>
+			<li>identifiers</li>
+			<li>string literals</li> 
+			<li>regular expression literals</li>
+		</ul>
+		<p>
+In comments, escape sequences are ignored and they have no influence on the comment whatsoever.  
+		</p>
+		<p>
+The syntax of Unicode escape sequence is: 
+		</p>
+		<pre class="code">\u006E;</pre>
+		<p>
+It always starts with <code>\u</code> and a four-digit number comes next, represented in hexadecimal notation, which is the value of the character in the Unicode table. In the above example we described the Latin character <code>n</code> via Unicode escape sequence. 
+		</p>
+		<p>
+Escape sequences are admitted everywhere in identifiers.<br>
+A character which is invalid when represented in graphical expression cannot be displayed via escape sequence. Invalid characters remain invalid regardless of the way they are represented.
+		</p>
+		<p>
+As we already know, the decimal numbers (Nd) are not admitted at the beginning of identifiers. Even when represented via escape sequence at the beginning, they are still <strong>invalid</strong> and this will cause termination of the program due to syntax error: 
+		</p>
+<pre class="code"><span class="comment">/**
+ * equivalent of:
+ * var 2;
+ * the expected result is a syntax error
+ */</span>
+var \u0032;</pre>
+
+<p>
+In this context, an interesting issue is what the behaviour of the interpreter will be if a reserved word is represented as identifier via escape sequence.
+</p>
+<pre class="code"><span class="comment">/**
+ * equivalent of:
+ * var if; 
+ */</span>
+var \u0069\u0066;</pre>
+<p>
+Before that identifier is checked for validity, the escape sequences are normalized to <code>if</code>. This means that the running of the program must be terminated due to syntax error because <code>if</code> is a reserved word.  
+</p>
+
+<p>
+	Some implementations do not obey this rule. They admit keywords to be represented as identifiers via escape sequences. This happens because escape sequences cannot represent words with special meaning to the interpreter.
+</p>
+<pre class="code"><span class="comment">/**
+ * equivalent to:
+ * if(true); 
+ */</span>
+\u0069\u0066(true);</pre>
+<p>
+	The expected result in this example is a syntax error because a key word is used as identifier.
+</p>
+<p>
+	In implementations which allow key words to be represented as identifiers via escape sequences, the above example will be interpreted according to the rules applied in "11.2.3 Function Calls" from the ECMA-262-3 standard. In other words, it is accepted as a function causing rather than a conditional structure "if". 
+</p>
+
+
+<h3 id="identifier_part">The rest of the identifier name</h3>
+<p>
+In this part of the names, the following groups of Unicode are admitted along with the already described characters and groups which can stand at the beginning of identifiers: 
+</p>
+
+<ul>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Mn/list.htm">Non-spacing mark (Mn)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Mc/list.htm">Combining spacing mark (Mc)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Nd/list.htm">Decimal number (Nd)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Pc/list.htm">Connector punctuation (Pc)</a></li>
+</ul>
+
+Each of the characters belonging to these categories may be used as a part of the identifier but only in the position after the first character.
+
+<h2 id="property_names">Names and object property accessing</h2>
+<p>
+In Javascript, the object property accessing is carried out in two ways. The syntax of both notations is determined in the standard: 
+</p>
+<blockquote>
+	<dl>
+		<dt><strong>ECMA-262 3rd edition. Section 11.2.1 Property Accessors</strong><br><br></dt>
+		<dd><strong>Dot notation:</strong></dd>
+		<dd>MemberExpression . Identifier</dd> 
+		<dd>CallExpression . Identifier<br><br></dd>
+		<dd><strong>Bracket notation:</strong></dd> 
+		<dd>MemberExpression [ Expression ]</dd>
+		<dd>CallExpression [ Expression ]</dd>
+	</dl>
+</blockquote>
+
+
+<h3 id="dot_notation">Dot notation</h3>
+In dot notation, the property names are checked in accordance with the already described rules for identifiers. All invalid forms of identifiers still remain invalid after object property accessing.
+<pre class="code">var foo = new Object();
+foo.if; <span class="comment">//Syntax Error</span>
+foo.2; <span class="comment">//Syntax Error</span>
+foo.true; <span class="comment">//Syntax Error</span></pre>
+<p>
+In dot notation, results of expressions and variable values for object property cannot be used.    
+</p>
+
+<pre class="code">var foo = new Object(),
+    bar = 'property';
+<span class="comment">/**
+ * No access is given to "property" which is the value of the variable bar.
+ * Access is given to a property with name "bar"
+ */</span>
+foo.bar;</pre>
+
+<h3 id="square_bracket">Square bracket notation</h3>
+<p>
+At square bracket notation, the result from the validity assessment of the expression is used as a property name.<br> 
+The characters which make up the property name are not treated according to the syntax rules for identifiers. All characters which would be invalid according to the identifiers rules, are valid with this notation.    
+</p>
+
+
+<pre class="code">var foo = new Object();
+foo['if']; 
+foo[2];
+foo[true];</pre>
+<p>
+The assessed result of the expression in the brackets is converted according to the algorithms described in section "9.8 ToString" of ECMA-262-3 standard and it is used as a property name. <br>
+In our example the following properties are accessed:  
+</p>
+<ul>
+	<li>'if'</li>
+	<li>'2'</li>
+	<li>'true'</li>
+</ul>
+<p>
+   At square brackets notation, property names are admitted with the above listed character sequences.  
+</p>
+<p>
+The advantage of the square brackets notation to the dot notation is that property names can be created while running the program. In dot notation, such action is permitted only if a dynamic compilation is used <code>eval</code> or <code>Function</code> constructor. 	
+</p>
+<pre class="code">var foo = new Object(),
+    bar = 'property';
+	
+foo[bar] = true;
+print(foo.property); <span class="comment">//true</span></pre>
+<p>
+In this case, a property with name "property" is added. The expression in the brackets is assessed according to the rules of ECMA-262-3 for: "11.1.2 Identifier Reference", "10.1.4 Scope Chain and Identifier Resolution" and "8.7.1 GetValue (V)". The received value is used as a property name. A primitive Boolean value <code>true</code> will be appropriated to the property with name "property".
+</p>
+
+
+<h2 id="object_literals">Object initialization (&#123; &#125;)</h2>
+<p>
+Object initialization or object literal.<br> Object literals are a part of ECMA-262-3 standard. Their advantage is the clarity and the brevity with which properties of the created object are defined.
+</p> 
+<blockquote>
+	<dl>	
+		<dt><strong>ECMA-262 3rd edition. Section 11.1.5 Object Initialiser</strong><br><br></dt>
+		<dd><strong>ObjectLiteral :</strong></dd> 
+		<dd>&#123;&#125;</dd> 
+		<dd>{ PropertyNameAndValueList }<br><br></dd> 
+		<dd><strong>PropertyNameAndValueList :</strong></dd> 
+		<dd>PropertyName : AssignmentExpression</dd>
+		<dd>PropertyNameAndValueList , PropertyName : AssignmentExpression<br><br></dd>
+		<dd><strong>PropertyName :</strong></dd> 
+		<dd>Identifier</dd> 
+		<dd>StringLiteral</dd> 
+		<dd>NumericLiteral</dd> 		
+	</dl>
+</blockquote>
+<p>
+	Concerning the syntax of the object literals, within the curly braces, properties of the created object can be defined and given the values of the right-hand
+expressions. If more definitions of properties are added, they are divided from the previous ones via comma <code>,</code>. 
+</p>
+<pre class="code">var obj = {},
+    obj1 = {property : true},
+    obj2 = {
+	    property : true,
+	    method : function (){
+	        return true;
+	    }
+    };
+
+print(obj1.property); <span class="comment">//true</span>
+
+print(obj2.property); <span class="comment">//true</span>
+print(obj2.method()); <span class="comment">//true</span></pre>
+<p>
+	Three objects are created in the example and a reference is appropriated to each of them as follows <code>obj</code>, <code>obj1</code> and <code>obj2</code> variables. The applied values of the function <code>print</code> are the values which have been appropriated in the process of the object initialization for their properties. In the last example, the received result from the function is applied to which the appropriated value of the <code>method</code> property points. 
+</p>
+<p>
+	The prototype chain of the three objects is: 
+</p>
+<pre class="code">obj  -> Object.prototype -> null
+obj1 -> Object.prototype -> null
+obj2 -> Object.prototype -> null</pre>
+
+<h3 id="oi_property_name">Property Name in object literal</h3>
+<ul>
+	<li>All valid identifiers are admitted as property names in object literals.</li>
+	<li>If a sting literal is used as a property name, characters which are invalid according to  7.8.4 String Literals, are not admitted.</li>
+	<li>If a numeric literal is used as a property name, characters which are invalid according to: 7.8.3 Numeric Literals, are not admitted.</li>
+</ul>
+<pre class="code">var obj = {
+	(2 + 2) : false, <span class="comment">//Syntax Error</span>
+	2abc : false, <span class="comment">//Syntax Error</span>
+	if : false <span class="comment">//Syntax Error</span>
+};</pre>
+<p>
+The names of the three properties are invalid according to the rules which are applied in ECMA-262-3. Upon their analysis, the program will be terminated due to syntax error. 
+</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>
+	Regardless of the naming conventions, it is always useful to think about the people who are going to read and maintain your code.<br>
+</p>
+<ul>
+	<li>Do not use reserved words as property names. Object literals and square brackets notation allow displaying of reserved words in string literals as a property name. This may result in errors when you run your program.</li>
+	<li>Using of other characters besides the Latin characters may cause misunderstanding of your program.</li>
+	<li>Restrain from using Unicode escape sequences because they are more difficult to read and understand. </li>
+</ul>
+<p>
+	Use as many meaningful names as you can, thus you will definitely improve the maintenance of your programs. 
+</p>
+<h2 id="literature">Useful materials</h2>
+<ul>
+	<li><a href="http://www.ecmascript.org/docs.php">ECMAScript Documentation</a></li>
+	<li><a href="http://groups.google.com/group/comp.lang.Javascript/topics?gvc=2">comp.lang.Javascript - archive</a></li>
+	<li><a href="http://www.jibbering.com/faq/faq_notes/square_brackets.html">Javascript Square Bracket Notation by Richard Cornford</a></li>	
+	<li><a href="http://en.wikipedia.org/wiki/Unicode">Unicode - From Wikipedia, the free encyclopedia</a></li>	
+</ul>
+
+<dl>
+	<dt><em>Author: <strong>Asen Bozhilov</strong></em></dt>
+	<dt><em>With the cooperation of:</em></dt>
+	<dd><strong><em>Stoyan Stefanov</em></strong></dd>
+	<dd><strong><em>Dr J R Stockton</em></strong></dd>
+</dl>
+<p>	
+	<em>Date of publication: 2010-10-15</em>
+</p>

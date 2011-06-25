@@ -1,0 +1,1118 @@
+		<style type="text/css">
+			.compat-table {background-color: #ddd; border-collapse: collapse;  }
+			.compat-table td, .compat-table th {border: 1px solid #FFFFFF; text-align: left; padding: 0.5em;}
+			td.yes, td.no {text-align: center;}
+			td.yes, .valid-id {background-color: #afa;}
+			td.no, .invalid-id {background-color: #faa;}
+			input {vertical-align: middle;}
+			.validator {border: 1px double #ddd; width: 655px; padding: 0 0.5em;}
+			#strict-mode {display: none;}
+			#id-result {margin: 1em 0;}
+			#id-result strong {padding: 0.5em;}
+		</style>
+		<script type="text/javascript" src="js/JSONTest.js"></script>
+		<script type="text/javascript">
+		    window.onload = function () {JSONTest.run()};
+		</script>
+			    <h1 id="compat-table">JSON.parse compatibility table</h1>
+			    <em>2010-11-17</em>
+			    <p>
+			       ECMA-262-5 describes JSON lexical grammar in <strong>15.12.1.1 The JSON Lexical Grammar</strong> section.<br>
+			       Conformance implementation must follow these lexical grammar rules in their <code>JSON.parse</code> implementation.
+			    </p>
+			    
+			    <p>
+			        In the test cases, when I have used Unicode Escape Sequences (<code>\u HexDigit HexDigit HexDigit HexDigit</code>) I suppose to be inserted character represented by this sequence instead of UnicodeEscapeSequence itself.
+			    </p>
+			    
+			    <table id="json-table" class="compat-table" cellspacing="0" cellpadding="0">
+				    <tr>
+					    <th>JSON text</th>
+					    <th>This implementation</th>
+					    <th>&nbsp;</th>
+					    <th>FF 3.6.6</th>
+					    <th>FF 4.0 beta</th>
+					    <th>IE8</th>
+					    <th>IE9 Beta</th>
+					    <th>Opera 11 (build 1055)</th>
+					    <th>Chrome 6.0.472</th>
+				        <th>Safari 5 (6533.16)</th>
+					    <th>json2 in FF 3.6.6</th>
+				    </tr>
+				    <tr id="support">
+					    <td><code>JSON.parse</code></td>
+					    <td>-</td>
+					    <td>&nbsp;</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="empty-value">
+				        <td><code>JSON.parse('');</code></td>
+				        <td>-</td>
+				        <td>&nbsp;</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				    </tr>
+				    <tr id="es-expression">
+				        <td><code>eval('6 * 6') == 36;</code></td>
+				        <td>-</td>
+				        <td>&nbsp;</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				    </tr>
+                    <tr id="es-list">
+                        <td><code>"str", "str"</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>   				    
+				    <tr id="dq-in-string">
+				        <td><code>"""</code></td>
+				        <td>-</td>
+				        <td>&nbsp;</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				    </tr>
+				    <tr id="bs-in-string">
+				        <td><code>"\"</code></td>
+				        <td>-</td>
+				        <td>&nbsp;</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				        <td class="yes">SyntaxError</td>
+				    </tr>
+                    <tr id="u0000-in-string">  
+                        <td><code>"\u0000"</code></td>  
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0001-in-string"> 
+                        <td><code>"\u0001"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0002-in-string"> 
+                        <td><code>"\u0002"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0003-in-string"> 
+                        <td><code>"\u0003"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0004-in-string"> 
+                        <td><code>"\u0004"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0005-in-string"> 
+                        <td><code>"\u0005"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u0006-in-string"> 
+                        <td><code>"\u0006"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0007-in-string"> 
+                        <td><code>"\u0007"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0008-in-string"> 
+                        <td><code>"\u0008"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0009-in-string"> 
+                        <td><code>"\u0009"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u000a-in-string"> 
+                        <td><code>"\u000a"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                    </tr>
+                    <tr id="u000b-in-string"> 
+                        <td><code>"\u000b"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u000c-in-string"> 
+                        <td><code>"\u000c"</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u000d-in-string"> 
+                        <td><code>"\u000d"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="u000e-in-string"> 
+                        <td><code>"\u000e"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td> 
+                    </tr>
+                    <tr id="u000f-in-string"> 
+                        <td><code>"\u000f"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0010-in-string"> 
+                        <td><code>"\u0010"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0011-in-string"> 
+                        <td><code>"\u0011"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0012-in-string"> 
+                        <td><code>"\u0012"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0013-in-string"> 
+                        <td><code>"\u0013"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0014-in-string"> 
+                        <td><code>"\u0014"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0015-in-string"> 
+                        <td><code>"\u0015"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0016-in-string"> 
+                        <td><code>"\u0016"</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0017-in-string"> 
+                        <td><code>"\u0017"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0018-in-string"> 
+                        <td><code>"\u0018"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u0019-in-string"> 
+                        <td><code>"\u0019"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001a-in-string"> 
+                        <td><code>"\u001a"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001b-in-string"> 
+                        <td><code>"\u001b"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001c-in-string"> 
+                        <td><code>"\u001c"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001d-in-string"> 
+                        <td><code>"\u001d"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001e-in-string"> 
+                        <td><code>"\u001e"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="u001f-in-string"> 
+                        <td><code>"\u001f"</code></td> 
+                        <td>-</td> 
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td> 
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="hex-escape-in-string">
+                        <td><code>"\xF1"</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="octal-escape-in-string">
+                        <td><code>"\101"</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="signed-integer">
+                        <td><code>+2</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="float-point-1">
+                        <td><code>2.</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="float-point-2">
+                        <td><code>.2</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="octal-00-in-number">  
+                        <td><code>00</code></td>  
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-01-in-number"> 
+                        <td><code>01</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-02-in-number"> 
+                        <td><code>02</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-03-in-number"> 
+                        <td><code>03</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-04-in-number"> 
+                        <td><code>04</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-05-in-number"> 
+                        <td><code>05</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-06-in-number"> 
+                        <td><code>06</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-07-in-number"> 
+                        <td><code>07</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-08-in-number"> 
+                        <td><code>08</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="octal-09-in-number"> 
+                        <td><code>09</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="hex-in-number"> 
+                        <td><code>0xFF</code></td> 
+                        <td>-</td>
+                        <td>&nbsp;</td> 
+                        <td class="yes">SyntaxError</td>                        
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>                    
+                    <tr id="es-object-literal-1">
+                        <td><code>{property : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="es-object-literal-2">
+                        <td><code>{'property' : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    
+                    <tr id="number-as-property">
+                        <td><code>{2 : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>                    
+                    
+                    <tr id="true-as-property">
+                        <td><code>{true : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr> 
+                    
+                    <tr id="false-as-property">
+                        <td><code>{false : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>                                        
+                    
+                    <tr id="null-as-property">
+                        <td><code>{null : false}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="yes">SyntaxError</td>
+                        <td>-</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>                    
+                    
+                    <tr id="trailing-coma-1">
+                        <td><code>{"property" : "value",}</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="trailing-coma-2">
+                        <td><code>["value", "value",]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr> 
+                    <tr id="spaces-1">
+                        <td><code title="vertical tab">[\u000B]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-2">
+                        <td><code title="form feed">[\u000C]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-3">
+                        <td><code title="No-break space">[\u00A0]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-4">
+                        <td><code title="byte order mark">[\uFEFF]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="spaces-5">
+                        <td><code>[\u1680]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="spaces-6">
+                        <td><code>[\u180E]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr> 
+                    <tr id="spaces-7">
+                        <td><code>[\u2000]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-8">
+                        <td><code>[\u2001]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>   
+                    <tr id="spaces-9">
+                        <td><code>[\u2002]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-10">
+                        <td><code>[\u2003]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>   
+                    <tr id="spaces-11">
+                        <td><code>[\u2004]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-12">
+                        <td><code>[\u2005]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-13">
+                        <td><code>[\u2006]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-14">
+                        <td><code>[\u2007]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-15">
+                        <td><code>[\u2008]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr> 
+                    <tr id="spaces-16">
+                        <td><code>[\u2009]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-17">
+                        <td><code>[\u200A]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>
+                    <tr id="spaces-18">
+                        <td><code>[\u202F]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="spaces-19">
+                        <td><code>[\u205F]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                    </tr>
+                    <tr id="spaces-20">
+                        <td><code>[\u3000]</code></td>
+                        <td>-</td>
+                        <td>&nbsp;</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="yes">SyntaxError</td>
+                        <td class="no">Allowed syntax</td>
+                    </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                    				    					    					    				    				    				    				    				    																															
+			    </table>
+			    <p>
+			        Credits to Christian C. Salvadó, Diego Perini and Juriy "kangax" Zaytsev for their feedback.  
+			    </p>
+
+

@@ -1,0 +1,201 @@
+body {
+	font: 14px/20px arial, sans-serif;
+	color: #000000;
+	padding: 0 50px;
+	margin: 0;
+	background-color: #DDDDDD;
+}
+
+a:link,
+#logo a {
+	text-decoration: none;
+	color: #0000CC;
+}
+
+a:hover,
+#navigation a:hover,
+#logo a:hover {
+	text-decoration: underline;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	margin: 1em 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.7em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1.3em;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+pre {
+	margin: 1em 0;
+	font: courier, monospace; 
+}
+
+pre.code {
+	border: 1px solid #000080;
+	background-color: #EFEFFF;
+	padding: 10px;
+	overflow: auto;
+}
+
+pre .comment {
+	color: #007F00;
+}
+
+blockquote,
+.quote-style {
+	background-color: #E5E5E5;
+	padding: 10px 20px; 
+}
+
+.quote-style {
+	border: 1px solid #000000;
+	margin: 20px 0;
+} 
+
+code {
+	background-color: #E5E5E5;
+	font-family: courier, monospace;
+	padding: 0 2px;
+}
+
+.al_r {
+	text-align: right;
+}
+
+ul.contents {
+	font-size: 1.1em;
+}
+
+ol.alpha {
+	list-style-type: lower-alpha;
+}
+
+table {
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+
+table td {
+	background-color: #E5E5E5;
+	padding: 5px 10px;
+}
+
+/*layout boxes*/
+#container {
+    min-width: 900px;
+    max-width: 1560px;
+    margin: 20px auto;
+    padding: 1.5em 0 0 0;
+    background-color: #FFFFFF;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+#content {
+    padding: 0 1.5em;
+} 
+
+#logo {
+    margin: 0;
+}
+
+.slogan {
+    font-size: 0.9em;
+    margin: 0.2em 0 0 0;
+}
+
+#header {
+    position: relative;
+    padding: 0.2em 1.5em;
+}
+
+.doc-banner {
+    position: absolute;
+    top: -0.9em;
+    right: 1.5em;
+}
+
+.doc-banner img {
+    border: 0;
+}
+
+#navigation {
+  background-color: #5A85C1;
+  margin: 1.5em 0; 
+  padding: 0 1.5em;	
+  list-style-type: none; 
+  height: 29px;
+}
+
+#navigation li,
+#navigation a {
+    float: left;
+}
+
+#navigation a {
+   padding: 0.3em 0.5em;
+   margin-right: 0.1em;
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+#navigation a:hover,
+#active_cat {
+    background-color: #365DA0;
+}
+ 
+
+#footer {
+    border-top: 1px solid #333333;;
+    margin-top: 1.5em;
+    height: 32px;
+    line-height: 32px; 
+    padding: 0.5em 1.5em;
+    text-align: center;
+}
+
+#footer .icons {
+    float: right;
+}
+
+h2.article-title {
+    font-size: 1.3em;
+    margin: 1.5em 0 0.5em 0;
+    font-weight: normal;
+}
+
+p.article-desc,
+ul.home-contents {
+    margin-top: 0.5em;
+}
+
+.profile-picture {
+    float: left;
+    margin: 0 2em 2em 0;
+}
+
+#codebox {
+    width: 800px; 
+    height: 300px;
+}
+

@@ -1,0 +1,508 @@
+		<h1>Идентификатори в Javascript</h1>
+		
+		<ul class="contents">
+			<li><a href="#introduction">Въведение</a></li>
+			<li>
+				<a href="#reserved_words">Резервирани от езика думи</a>
+				<ul>
+					<li><a href="#keywords">Ключови думи</a></li>	
+					<li><a href="#future_reserved">Резервирани думи за бъдещо използване</a></li>
+					<li><a href="#bool_literal">Boolean литерал</a></li>
+					<li><a href="#null_literal">Null литерал</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#ids_name">Имена на идентификатори</a>
+				<ul>
+					<li>
+						<a href="#identifier_start">Първи символ в идентификатор</a>
+						<ul>
+							<li><a href="#underscore">Долно тире "_"</a></li>	
+							<li><a href="#dollar_sign">$</a></li>
+							<li><a href="#unicode_letter">Буква от Unicode таблицата</a></li>
+							<li><a href="#unicode_escape_sequences">Unicode ескейп последователност</a></li>
+						</ul>						
+					</li>	
+					<li><a href="#identifier_part">Останала част от името на идентификатор</a></li>
+				</ul>
+			</li>
+			
+			
+			<li>
+				<a href="#property_names">Имена и достъп до свойства на обекти</a>
+				<ul>
+					<li><a href="#dot_notation">Нотация с точка (Dot notation)</a></li>	
+					<li><a href="#square_bracket">Нотация с квадратни скоби (Square bracket notation)</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#object_literals">Инициализация на обект ({ })</a>
+				<ul>
+					<li><a href="#oi_property_name">Име на свойство в обектен литерал</a></li>
+				</ul>
+			</li>
+			<li><a href="#conclusion">Заключение</a></li>
+			<li><a href="#literature">Полезни материали</a></li>
+		</ul>		
+		
+		<h2 id="introduction">Въведение</h2>
+		<blockquote>
+			<dl>
+				<dt><strong>Определение:</strong></dt>
+				<dd>За идентификатор се счита стойност, която е уникална спрямо всички останали идентификатори в дадена система.</dd>
+			</dl>
+		</blockquote>
+		<p>
+			Различните системи определят различни правила за валидни стойности на идентификатори. Те могат да бъдат числа, последователности от различни символи или комбинация от двете форми. Във всички сфери на живота се използват идентификатори. Най-честата им употреба е когато искаме да направим ясно разграничение между сходни неща. За пример можем да дадем пощенските кодове, имената на държавите и още много други, които се срещат в ежедневието ни. Съкратената форма на наименованието Идентификатор с латински символи е "ID".
+		</p>
+		<p>
+			В програмните езици от високо ниво, идентификатори най-често се използват за именуване на променливи, функции, свойства на обекти и др. Те предоставят лесен начин на програмистите да дават имена на различните структури от данни и да ги използват в различни езикови конструкции. 
+		</p>
+		<p>
+			Javascript не прави изключение и идентификатори се използват за:
+		</p>
+		<ul>
+			<li>Имена на променливи</li>
+			<li>Имена на функции</li> 
+			<li>Имена на формални параметри на функции</li>
+			<li>Като част от именувани конструкции</li>
+			<li>Имена на свойства на обекти</li>
+		</ul>
+		<p>
+			Javascript използва Unicode стандарта версия 2.1 или по-висока. За представянето на всеки един символ в програмата се използва UTF-16 кодиране. 
+		</p>
+		<p>
+			За да бъде дефинирана променлива или функция трябва да бъде използван валиден идентификатор спрямо правилата въведени от ECMA-262 стандарта.
+		</p>
+		<pre class="code">var foo; 
+function bar(){}</pre>
+		<p>
+		По време на синтактичния анализ на програмата, идентификаторите (имената) ще бъдат проверени за валидност. Ако те не са валидни интерпретатора ще изпрати грешка от тип SyntaxError, и това ще прекрати изпълнението на програмата. 
+		
+		</p>
+
+		<pre class="code">var 2; <span class="comment">//SyntaxError</span></pre>
+		<p>
+		За да можем да пишем стабилни програми трябва добре да познаваме синтактичните правила наложени от ECMA-262 стандарта. 
+		</p>
+		<blockquote>
+			<dl>
+				<dt><strong>ECMA-262 издание 3. Секция 7.6 Identifiers</strong></dt> 
+				<dt>Identifier ::</dt>
+					<dd>IdentifierName but not ReservedWord</dd>
+			</dl>
+		</blockquote>
+		<h2 id="reserved_words">Резервирани от езика думи</h2>
+		<p>
+			Резервираните думи, са думи със специално значение за интерпретатора. Те се използват за ясно разграничение на различни езикови конструкции и са позволени на точно определени места, спрямо синтактичните правила на езика. Тези думи не могат да бъдат използвани за идентификатори.<br> 
+			В Javascript те се разделят на 4 типа:
+		</p>
+		<h3 id="keywords">Ключови думи</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>break</td>
+				<td>else</td>
+				<td>new</td>
+				<td>var</td>
+				<td>case</td>
+			</tr>
+			<tr>
+				<td>finally</td>
+				<td>return</td>
+				<td>void</td>
+				<td>catch</td>
+				<td>for</td>
+			</tr>
+			<tr>
+				<td>switch</td>
+				<td>while</td>
+				<td>continue</td>
+				<td>function</td>
+				<td>this</td>
+			</tr>
+			<tr>
+				<td>with</td>
+				<td>default</td>
+				<td>if</td>
+				<td>throw</td>
+				<td>delete</td>
+			</tr>
+			<tr>
+				<td>in</td>
+				<td>try</td>
+				<td>do</td>
+				<td>instanceof</td>
+				<td>typeof</td>
+			</tr>
+		</table>
+		
+		<h3 id="future_reserved">Резервирани думи за бъдещо използване</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>abstract</td>
+				<td>enum</td>
+				<td>int</td>
+				<td>short</td>
+				<td>boolean</td>
+			</tr>
+			<tr>
+				<td>export</td>
+				<td>interface</td>
+				<td>static</td>
+				<td>byte</td>
+				<td>extends</td>
+			</tr>
+			<tr>
+				<td>long</td>
+				<td>super</td>
+				<td>char</td>
+				<td>final</td>
+				<td>native</td>
+			</tr>
+			<tr>
+				<td>synchronized</td>
+				<td>class</td>
+				<td>float</td>
+				<td>package</td>
+				<td>throws</td>
+			</tr>
+			<tr>
+				<td>const</td>
+				<td>goto</td>
+				<td>private</td>
+				<td>transient</td>
+				<td>debugger</td>
+			</tr>
+			<tr>
+				<td>implements</td>
+				<td>protected</td>
+				<td>volatile</td>
+				<td>double</td>
+				<td>import</td>
+			</tr>
+			<tr>
+				<td>public</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<h3 id="bool_literal">Boolean литерал</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>true</td>
+				<td>false</td>
+			</tr>
+		</table>
+
+		<h3 id="null_literal">Null литерал</h3>
+		<table cellspacing="1" cellpadding="0">
+			<tr>
+				<td>null</td>
+			</tr>
+		</table>
+
+		
+		<p>
+			Всеки един от следващите примери за идентификатори, ще предизвика синтактична грешка, защото там където интерпетатора очаква валиден идентификатор се използва резервирана дума: 
+		</p>
+
+		<pre class="code">var if; <span class="comment">//SyntaxError</span>
+var super; <span class="comment">//SyntaxError</span>
+var true; <span class="comment">//SyntaxError</span></pre>
+		
+		<p>
+		За сметка на това в следващия пример и трите идентификатора са валидни: 
+		</p>
+		
+		<pre class="code">var IF;
+var SUPER;
+var TRUE;</pre>
+
+		<p>
+		Това е така защото Javascript интерпретатора е чувствителен към регистъра на символите. И трите идентификатора не са резервирани думи защото са описани по различен начин от думите представени в таблиците по горе. В ECMA-262 имплементациите, два идентификатора се считат за еднакви, само когато са описани със същата последователност от Unicode стойности за всеки един символ. 
+		</p>
+		
+		<pre class="code">var \u0066\u006F\u006F = true;
+print(foo); <span class="comment">//true</span></pre>
+
+		<h2 id="ids_name">Имена на идентификатори</h2>
+		<p>
+Името на идентификатор може да съдържа един или повече символи. Документацията не налага рестрикции върху максималната дължина на идентификаторите.<br> 
+Правилата за имена на идентификатори, ECMA-262 разделя на две части.  
+		</p>
+		<ul>
+			<li>Символи които са позволени в началото на идентификатора</li> 
+			<li>Символи които са позволени в останалата част</li>
+		</ul>
+		<p>
+Всички символи, с които може да започне името на идентификатор са позволени и в останалата част. Обратното е погрешно. 
+		</p>
+		<pre class="code">var $2$; <span class="comment">//Валиден идентификатор</span>
+var 2$2; <span class="comment">//SyntaxError</span></pre>
+		
+		<h3 id="identifier_start">Първи символ в идентификатор</h3>
+		<p>Като първи символ в идентификаторите могат да се използват: </p>
+		
+		<h4 id="underscore">Долно тире "_"</h4>
+		<p>
+			В Javascript няма модификатори за достъп до свойствата на обектите. Обикновено долно тире се използва от програмистите като начален символ в името на дадено свойство, за да укаже, че <strong>не е препоръчително</strong> потребителя на кода, да манипулира това свойство за да не наруши правилната работа на програмата. С други думи долно тире в началото е псевдо емулация на "private" модификатора.
+		</p>
+
+		<h4 id="dollar_sign">$</h4>
+		<p>
+Знакът който символизира Американския долар и Аржентинското песо, също е позволен като начален символ в името на идентификатора. ECMA-262-3 препоръчва този символ да бъде използван като начален само в автоматично генериран код. Повечето Javascript библиотеки го използват по различен начин, въпреки препоръките на документацията. 	
+		</p>
+
+		<h4 id="unicode_letter">Буква от Unicode таблицата</h4>
+		<p>
+Unicode стандарта групира различните символи в отделни категории. Тези категории се използват за да групират символите, които са близки по значение. В Javascript за буква от Unicode таблицата се счита един от символите, които попадат в следните Unicode категории:
+		</p>
+		<ul>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lu/list.htm">Uppercase letter (Lu)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Ll/list.htm">Lowercase letter (Ll)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lt/list.htm">Titlecase letter (Lt)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lm/list.htm">Modifier letter (Lm)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Lo/list.htm">Other letter (Lo)</a></li>
+			<li><a href="http://www.fileformat.info/info/unicode/category/Nl/list.htm">Letter number (Nl)</a></li>
+		</ul>
+		<p>
+			Всеки един от символите в тези групи, може да бъде използван в началото на идентификатор. 
+		</p>
+
+
+		<h4 id="unicode_escape_sequences">Unicode ескейп последователност</h4>
+		<p>
+В Javascript един символ може да се опише освен с графичното му представяне и с неговата стойност в Unicode таблицата. Това е позволено на точно определени места:  
+		</p>
+		<ul>
+			<li>В идентификаторите</li>
+			<li>В стринговите литерали</li> 
+			<li>В литералите които описват регулярен израз</li>
+		</ul>
+		<p>
+В коментарите ескейп последователностите биват игнорирани и не въздействат по никакъв начин върху коментара.
+		</p>
+		<p>
+Синтаксиса на Unicode ескейп последователност е: 
+		</p>
+		<pre class="code">\u006E;</pre>
+		<p>
+Винаги започва с <code>\u</code> и е последван от четири цифрено число, представено в 16-чна бройна система, което е стойността на символа в Unicode таблицата. В горния пример описахме латинския символ <code>n</code> с Unicode ескейп последователност. 
+		</p>
+		<p>
+Ескейп последователностите са позволени навсякъде в идентификаторите.<br> 
+С ескейп последователност, не може да се опише символ в идентификаторите, който е невалиден ако се представи с графичния му вид. Невалидните символи независимо от начина на представяне си остават невалидни. 
+		</p>
+		<p>
+Както вече знаем, десетичните числа (Nd) не са позволени в началото на идентификатор. Дори описани с ескейп последователност в началото, те отново <strong>не са валидни</strong> и това ще предизвика терминиране на програмата със синтактична грешка: 
+		</p>
+<pre class="code"><span class="comment">/**
+ * Еквивалент на:
+ * var 2;
+ * Очаквания резултат е синтактична грешка
+ */</span>
+var \u0032;</pre>
+
+<p>
+В този контекст интересен въпрос е какво ще бъде поведението на интерпретатора ако с ескейп последователности се опише резервирана дума за идентификатор? 
+</p>
+<pre class="code"><span class="comment">/**
+ * Еквивалент на:
+ * var if; 
+ */</span>
+var \u0069\u0066;</pre>
+<p>
+Преди да бъде проверен идентификатора за валидност, ескейп последователностите ще бъдат конвертирани до <code>if</code>. Това означава, че изпълнението на програмата трябва да бъде прекратено със синтактична грешка, защото <code>if</code> e резервирана дума. 
+</p>
+
+<p>
+	Някой имплементации не следват това правило. Те позволяват с ескейп последователности да се опише ключова дума за идентификатор. Това е така защото с ескейп последователности не може да се опише дума със специално значение за интерпретатора.
+</p>
+<pre class="code"><span class="comment">/**
+ * Еквивалент на:
+ * if(true); 
+ */</span>
+\u0069\u0066(true);</pre>
+<p>
+	Очаквания резултат от този пример е синтактична грешка, защото се използва ключова дума за идентификатор. 
+</p>
+<p>
+	В имплементациите които позволяват да бъдат описани ключови думи за идентификатори с ескейп последователности, горния пример ще бъде интерпретиран според правилата описани в "11.2.3 Function Calls" на ECMA-262-3 стандарта. С други думи, третира се като извикване на функция a не като условна конструкция "if".
+</p>
+
+
+<h3 id="identifier_part">Останала част от името на идентификатор</h3>
+<p>
+В тази част от имената освен вече описаните символи и групи с които може да започва идентификатора, са позволени и следните групи от Unicode:
+</p>
+
+<ul>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Mn/list.htm">Non-spacing mark (Mn)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Mc/list.htm">Combining spacing mark (Mc)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Nd/list.htm">Decimal number (Nd)</a></li>
+	<li><a href="http://www.fileformat.info/info/unicode/category/Pc/list.htm">Connector punctuation (Pc)</a></li>
+</ul>
+
+Всеки един от символите, които попадат в тези групи е позволено да бъде използван като част от името на идентификатора, но само в частта след първия символ. 
+
+<h2 id="property_names">Имена и достъп до свойства на обекти</h2>
+<p>
+В Javascript достъпа до свойство на обект се осъществява по два начина. Синтаксиса и на двете нотации са дефинирани в стандарта:
+</p>
+<blockquote>
+	<dl>
+		<dt><strong>ECMA-262 издание 3. Секция 11.2.1 Property Accessors</strong><br><br></dt>
+		<dd><strong>Dot notation:</strong></dd>
+		<dd>MemberExpression . Identifier</dd> 
+		<dd>CallExpression . Identifier<br><br></dd>
+		<dd><strong>Bracket notation:</strong></dd> 
+		<dd>MemberExpression [ Expression ]</dd>
+		<dd>CallExpression [ Expression ]</dd>
+	</dl>
+</blockquote>
+
+
+<h3 id="dot_notation">Нотация с точка (Dot notation)</h3>
+При нотацията с точка, имената на свойствата се проверяват според правилата описани до тук за идентификаторите.  Всички невалидни форми на идентификатори, ще бъдат невалидни и при достъп до свойство на обект:
+<pre class="code">var foo = new Object();
+foo.if; <span class="comment">//Syntax Error</span>
+foo.2; <span class="comment">//Syntax Error</span>
+foo.true; <span class="comment">//Syntax Error</span></pre>
+<p>
+При нотацията с точка, също така не може да се използва резултат от израз или стойноста на променлива за свойство на обект.     
+</p>
+
+<pre class="code">var foo = new Object(),
+    bar = 'property';
+<span class="comment">/**
+ * Не се достъпва свойство "property" което е стойността на променливата bar.
+ * Достъпва се свойство с име "bar"
+ */</span>
+foo.bar;</pre>
+
+<h3 id="square_bracket">Нотация с квадратни скоби (Square bracket notation)</h3>
+<p>
+При нотацията с квадратни скоби за име на свойство се използва резултата от изчислението на валиден за езика израз.<br> Символите които образуват името на свойство не се третират според синтактичните правила за идентификатори.   
+Всички символи, които биха били невалидни според правилата за идентификатори, при тази нотация са валидни.  
+</p>
+
+
+<pre class="code">var foo = new Object();
+foo['if']; 
+foo[2];
+foo[true];</pre>
+<p>
+Изчисления резултат от израза между скобите бива конвертиран според алгоритмите описани в секция "9.8 ToString" на ECMA-262-3 стандарта и се използва за име на свойство.<br>
+В нашия пример се достъпват свойствата: 
+</p>
+<ul>
+	<li>'if'</li>
+	<li>'2'</li>
+	<li>'true'</li>
+</ul>
+<p>
+   При нотация с квадратни скоби е позволено да съществуват имена на свойства с изброените по горе последователности от символи. 
+</p>
+<p>
+Предимство на нотацията с квадратни скоби пред тази с точка, е че по време на изпълнението на програмата могат да се създават имена на свойства. При нотацията с точка подобно поведение е допустимо само ако се използва динамично компилиране и изпълнение на код: <code>eval</code> или <code>Function</code> конструктора. 	
+</p>
+<pre class="code">var foo = new Object(),
+    bar = 'property';
+	
+foo[bar] = true;
+print(foo.property); <span class="comment">//true</span></pre>
+<p>
+В случая се достъпва свойство с име "property". Израза между скобите се изчислява според правилата в ECMA-262-3 за: "11.1.2 Identifier Reference", "10.1.4 Scope Chain and Identifier Resolution" и  "8.7.1 GetValue (V)". Върнатата стойност се използва за име на свойство. На свойството с име "property" ще бъде присвоена примитивна булева стойност <code>true</code>. 
+</p>
+
+
+<h2 id="object_literals">Инициализация на обект (&#123; &#125;)</h2>
+<p>
+Инициализация на обект или обектен литерал.<br> Обектните литерали са част от ECMA-262-3 стандарта. Ползата от тях е яснотата и краткостта, с която се дефинират свойства на създадения обект. 
+</p> 
+<blockquote>
+	<dl>	
+		<dt><strong>ECMA-262 издание 3. Секция 11.1.5 Object Initialiser</strong><br><br></dt>
+		<dd><strong>ObjectLiteral :</strong></dd> 
+		<dd>&#123;&#125;</dd> 
+		<dd>{ PropertyNameAndValueList }<br><br></dd> 
+		<dd><strong>PropertyNameAndValueList :</strong></dd> 
+		<dd>PropertyName : AssignmentExpression</dd>
+		<dd>PropertyNameAndValueList , PropertyName : AssignmentExpression<br><br></dd>
+		<dd><strong>PropertyName :</strong></dd> 
+		<dd>Identifier</dd> 
+		<dd>StringLiteral</dd> 
+		<dd>NumericLiteral</dd> 		
+	</dl>
+</blockquote>
+<p>
+	Спрямо синтаксиса на обектните литерали, между къдравите скоби е позволено да бъдат дефинирани свойства на създадения обект и да им се присвои стойността от израза, който стои от дясната страна на <code>:</code>. Ако следват още дефиниции на свойства се разделят от предишните със запетая <code>,</code>.
+</p>
+<pre class="code">var obj = {},
+    obj1 = {property : true},
+    obj2 = {
+	    property : true,
+	    method : function (){
+	        return true;
+	    }
+    };
+
+print(obj1.property); <span class="comment">//true</span>
+
+print(obj2.property); <span class="comment">//true</span>
+print(obj2.method()); <span class="comment">//true</span></pre>
+<p>
+	В примера се създават три обекта и се присвоява референция към всеки един от тях както следва на <code>obj</code>, <code>obj1</code> и <code>obj2</code> променливите. Подадените стойности на функцията <code>print</code> са стойностите, които са присвоени по време на инициализацията на обектите за техните свойства. В последния случай се подава върнатия резултат от функцията към която сочи присвоената стойност на <code>method</code> свойството.
+</p>
+<p>
+	Прототипната верига на трите обекта е:
+</p>
+<pre class="code">obj  -> Object.prototype -> null
+obj1 -> Object.prototype -> null
+obj2 -> Object.prototype -> null</pre>
+
+<h3 id="oi_property_name">Име на свойство в обектен литерал</h3>
+<ul>
+	<li>За име на свойствo в обектен литерал са позволени всички валидни идентификатори</li>
+	<li>Ако за име на свойство се използва стрингов литерал, не се допускат символи, които са невалидни според: 7.8.4 String Literals</li>
+	<li>Ако за име на свойство се използва числов литерал, не се допускат символи, които са невалидни според: 7.8.3 Numeric Literals</li>
+</ul>
+<pre class="code">var obj = {
+	(2 + 2) : false, <span class="comment">//Syntax Error</span>
+	2abc : false, <span class="comment">//Syntax Error</span>
+	if : false <span class="comment">//Syntax Error</span>
+};</pre>
+<p>
+Имената и на трите свойства не са валидни спрямо правилата, които се описват от ECMA-262-3. При анализа им, програмата ще бъде терминирана със синтактична грешка. 
+</p>
+<h2 id="conclusion">Заключение</h2>
+<p>
+	Независимо от използваната конвенция за именуване, винаги е полезно да мислите за хората, които ще четат и поддържат вашия код.<br>
+</p>
+<ul>
+	<li>Не използвайте резервирани думи за имена на свойства. Обектните литерали и нотацията с квадратни скоби позволяват да бъде описана резервирана дума в стрингов литерал за име на свойство. Това може да доведе до грешки при използване на вашата програма</li>
+	<li>Използването на други символи освен латинските, може да доведе до неразбиране на вашата програма</li>
+	<li>Въздържайте се от използване на Unicode ескейп последователности, защото те са по-трудни за четене и разбиране</li>
+</ul>
+<p>
+	Използвайте максимално значещи имена, така със сигурност ще подобрите поддръжката на вашите програми.
+</p>
+<h2 id="literature">Полезни материали</h2>
+<ul>
+	<li><a href="http://www.ecmascript.org/docs.php">ECMAScript Documentation</a></li>
+	<li><a href="http://groups.google.com/group/comp.lang.javascript/topics?gvc=2">comp.lang.javascript - archive</a></li>
+	<li><a href="http://www.jibbering.com/faq/faq_notes/square_brackets.html">Javascript Square Bracket Notation by Richard Cornford</a></li>	
+	<li><a href="http://en.wikipedia.org/wiki/Unicode">Unicode - From Wikipedia, the free encyclopedia</a></li>	
+</ul>
+
+<dl>
+	<dt><em>Автор: <strong>Асен Божилов</strong></em></dt>
+	<dt><em>Със съдействието на:</em></dt>
+	<dd><strong><em>Стоян Стефанов</em></strong></dd>
+</dl>
+<p>	
+	<em>Дата на публикация: 08.03.2010</em>
+</p>

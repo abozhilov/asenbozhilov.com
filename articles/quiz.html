@@ -1,0 +1,263 @@
+
+<script type="text/javascript" src="js/quiz.js"></script>
+		<h1>Javascript quiz</h1>
+		<em>2010-06-29</em>
+		<p>
+			The questions are strongly related with <strong>ECMA-262-3</strong> standard. The test does not contain any non-standard approaches. <br>
+			Quirks behavior is not important for the proper answers. The correct answers can be found in <strong>ECMA-262-3</strong>.<br>
+			<em>Good luck!</em>   
+		</p>
+<ol>
+	<li>
+<pre class="code">
+Function.prototype.toString.call({
+    name: 'F', 
+    body: 'print("Javascript is hard")'
+});
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_0" id="answer_0_a">
+				<label for="answer_0_a">function F(){print("Javascript is hard");}</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_0" id="answer_0_b">
+				<label for="answer_0_b">TypeError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_0" id="answer_0_c">
+				<label for="answer_0_c">empty string</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_0" id="answer_0_d">
+				<label for="answer_0_d">[object Function]</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+new String({
+    toString : function (){ return this;}, 
+    valueOf : function () {return this;}
+});
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_1" id="answer_1_a">
+				<label for="answer_1_a">TypeError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_1" id="answer_1_b">
+				<label for="answer_1_b">String value</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_1" id="answer_1_c">
+				<label for="answer_1_c">String object</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_1" id="answer_1_d">
+				<label for="answer_1_d">Object</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+typeof (new Date() + new Date());
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_2" id="answer_2_a">
+				<label for="answer_2_a">number</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_2" id="answer_2_b">
+				<label for="answer_2_b">object</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_2" id="answer_2_c">
+				<label for="answer_2_c">string</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_2" id="answer_2_d">
+				<label for="answer_2_d">undefined</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+typeof (void null);
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_3" id="answer_3_a">
+				<label for="answer_3_a">object</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_3" id="answer_3_b">
+				<label for="answer_3_b">null</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_3" id="answer_3_c">
+				<label for="answer_3_c">undefined</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_3" id="answer_3_d">
+				<label for="answer_3_d">SyntaxError</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+function F() {}
+F.prototype = new Function;
+Object.prototype.toString.call(new F());
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_4" id="answer_4_a">
+				<label for="answer_4_a">[object Function]</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_4" id="answer_4_b">
+				<label for="answer_4_b">[object Array]</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_4" id="answer_4_c">
+				<label for="answer_4_c">[object String]</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_4" id="answer_4_d">
+				<label for="answer_4_d">[object Object]</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+[].length = -2;
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_5" id="answer_5_a">
+				<label for="answer_5_a">TypeError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_5" id="answer_5_b">
+				<label for="answer_5_b">-2</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_5" id="answer_5_c">
+				<label for="answer_5_c">RangeError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_5" id="answer_5_d">
+				<label for="answer_5_d">0</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+var D = Math.pow(2, 33);
+(D | D) == D;
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_6" id="answer_6_a">
+				<label for="answer_6_a">true</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_6" id="answer_6_b">
+				<label for="answer_6_b">false</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_6" id="answer_6_c">
+				<label for="answer_6_c">RangeError</label>
+			</li>
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+'_string_'.replace(/^/, "$'");
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_7" id="answer_7_a">
+				<label for="answer_7_a">_string_</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_7" id="answer_7_b">
+				<label for="answer_7_b">'_string_</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_7" id="answer_7_c">
+				<label for="answer_7_c">$'_string_</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_7" id="answer_7_d">
+				<label for="answer_7_d">_string__string_</label>
+			</li>			
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+eval('typeof F; function F() {}'); 
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_8" id="answer_8_a">
+				<label for="answer_8_a">undefined</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_8" id="answer_8_b">
+				<label for="answer_8_b">object</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_8" id="answer_8_c">
+				<label for="answer_8_c">string</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_8" id="answer_8_d">
+				<label for="answer_8_d">function</label>
+			</li>			
+		</ol>
+	</li>
+	<li>
+<pre class="code">
+debugger; 
+</pre>
+		<ol class="alpha">
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_a">
+				<label for="answer_9_a">Send moneys to Microsoft</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_b">
+				<label for="answer_9_b">Possible SyntaxError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_c">
+				<label for="answer_9_c">Send mail to Brendan Eich with the source code of your program</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_d">
+				<label for="answer_9_d">ReferenceError</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_e">
+				<label for="answer_9_e">On Windows start scanning for viruses</label>
+			</li>
+			<li>
+				<input type="radio" name="answer_9" id="answer_9_f">
+				<label for="answer_9_f">On Linux print "The bugs are on the previous answer"</label>
+			</li>									
+		</ol>
+	</li>
+</ol>
+
+<div class="quote-style" id="results"></div>
+<p>
+<button onclick="getResults()">See the results</button>
+</p>
+
+<dl>
+	<dt><em>Author: <strong>Asen Bozhilov</strong></em></dt>
+</dl>

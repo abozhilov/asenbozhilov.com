@@ -1,0 +1,86 @@
+		<script type="text/javascript" src="js/json.js"></script>
+		<script type="text/javascript">
+		    function proceed() {
+		        var str = document.getElementById('codebox').value,
+		            output = document.getElementById('codeoutput'),
+		            val;
+		        
+		        try {
+		            val = Object.prototype.toString.call(evalJSON(str)).slice(8, -1);
+		        } catch (e) {
+		            val = ['\u003cstrong\u003eSyntaxError:\u003c/strong\u003e ' + e.message,
+		                   '\u003cstrong\u003eLine number:\u003c/strong\u003e ' + e.line,
+		                   '\u003cstrong\u003eColumn number:\u003c/strong\u003e ' + e.col
+		            ].join('\u003cbr\u003e');
+		        }
+		        
+		        output.innerHTML = val;
+		    }
+		</script>
+                <h1>Javascript JSON parser</h1>
+                <em>2011-02-14</em>
+                <p>
+                    <code>evalJSON</code> is a full JSON parser implemented in Javascript.<br>
+                    It checks passed string according the defined JSON lexical grammar by ECMA-262-5. 
+                </p>
+                <p>
+                    The semantic of <code>evalJSON</code> is exactly as the semantic defined by ECMA-262-5 for <code>JSON.parse</code> built-in function.
+                </p>
+                <p>
+                    <code>evalJSON</code> should not be used as a fallback implementation of <code>JSON.parse</code>.<br>
+                    It is better to be used for debugging and testing purposes of your JSON strings.  
+                </p>
+                <p>
+                    If the passed JSON string is not syntactical correct, <code>evalJSON</code> throws a SyntaxError with appropriate message.<br>
+                    Also it reports the line and the column number of the error.
+                </p>
+                <p>
+                    It covers all test cases from my <a href="json-parse.html">JSON.parse compatibility table</a>.
+                </p>
+                <p>
+                    If you want to stay tuned you could clone the project from its github repository.<br>  
+                    <a href="https://github.com/abozhilov/json">https://github.com/abozhilov/json</a>
+                </p>
+                <p>
+                    If you find any bugs, please report them in the bug tracking system.<br> 
+                    <a href="https://github.com/abozhilov/json/issues">Report a bug</a>
+                </p>                
+                <h2>Try it out <code>evalJSON(JSONStr);</code></h2>
+                <textarea id="codebox" cols="2" rows="2">{
+    "items":
+        {
+            "item":
+                [
+                    {
+                        "id": "0001",
+                        "type": "donut",
+                        "name": "Cake",
+                        "ppu": 0.55,
+                        "batters":
+                            {
+                                "batter":
+                                    [
+                                        { "id": "1001", "type": "Regular" },
+                                        { "id": "1002", "type": "Chocolate" },
+                                        { "id": "1003", "type": "Blueberry" },
+                                        { "id": "1004", "type": "Devil's Food" }
+                                    ]
+                            },
+                        "topping":
+                            [
+                                { "id": "5001", "type": "None" },
+                                { "id": "5002", "type": "Glazed" },
+                                { "id": "5005", "type": "Sugar" },
+                                { "id": "5007", "type": "Powdered Sugar" },
+                                { "id": "5006", "type": "Chocolate with Sprinkles" },
+                                { "id": "5003", "type": "Chocolate" },
+                                { "id": "5004", "type": "Maple" }
+                            ]
+                    }
+
+                ]
+        }
+}</textarea><br>
+                <input type="button" value="evalJSON" onclick="proceed()">
+                <pre class="code" id="codeoutput"></pre>
+                <p>Credits to Alexander also known as <a href="http://twitter.com/bga_">@bga_</a> for various contributions.</p>

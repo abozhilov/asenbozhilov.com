@@ -1,0 +1,633 @@
+		<style type="text/css">
+			.compat-table {background-color: #ddd; border-collapse: collapse; }
+			.compat-table td, .compat-table th {border: 1px solid #FFFFFF; text-align: left; padding: 0.5em;}
+			td.yes, td.no {text-align: center;}
+			td.yes, .valid-id {background-color: #afa;}
+			td.no, .invalid-id {background-color: #faa;}
+			input {vertical-align: middle;}
+			.validator {border: 1px double #ddd; width: 655px; padding: 0 0.5em;}
+			#strict-mode {display: none;}
+			#id-result {margin: 1em 0;}
+			#id-result strong {padding: 0.5em;}
+		</style>
+		<script type="text/javascript" src="js/SourceText.js"></script>
+		<script type="text/javascript">
+			function showHideStrict(sender) {
+				var strict = document.getElementById('es5-strict'),
+					holdStrict = document.getElementById('strict-mode');
+				
+				holdStrict.style.display = (sender.checked ? 'inline' : 'none');
+				strict.checked = false;
+			}
+			
+			function checkIdentifier() {
+				var identifier = document.getElementById('identifier').value,
+					result = document.getElementById('id-result'),
+					es3 = document.getElementById('es3').checked,
+					es5 = document.getElementById('es5').checked,
+					es5Strict = document.getElementById('es5-strict').checked,
+					check = true, output, cssClass;
+					
+				if (es3) {
+					check = SourceText.isIdentifier(identifier);
+				}
+				if (check && es5) {
+					check = SourceText.isIdentifier(identifier, true, es5Strict);
+				}
+				
+				if (!es3 && !es5) {
+					output = 'Please select options.';
+				}
+				else if (check) {
+					output = 'Valid identifier';
+					cssClass = 'valid-id';
+				}
+				else {
+					output = 'Invalid identifier';
+					cssClass = 'invalid-id';
+				}
+				
+				result.innerHTML = '<strong class="' + cssClass + '">' + output + '<\/strong>';
+			}
+		</script>
+                <h1>ECMAScript Idеntifiers - validator and compatibility table</h1>
+                <em>2010-10-18</em>
+			    <h2 id="validator">Identifier validator</h2>
+			    <form class="validator" action="" onsubmit="checkIdentifier(); return false;">
+				    <p>
+					    <input type="checkbox" id="es3"> <label for="es3">ECMAScript 3</label>
+
+					    <input type="checkbox" onclick="showHideStrict(this)" id="es5"> <label for="es5">ECMAScript 5</label>
+					    <span id="strict-mode"><input type="checkbox" id="es5-strict"> <label for="es5-strict">strict mode</label></span>
+				    </p>
+				    <p>
+				        <input type="text" id="identifier">
+				        <input type="submit" value="Check">
+				    </p>
+				    <div id="id-result"></div>
+			    </form>
+
+			    <h2 id="compat-table">Compatibility table</h2>
+			    <table class="compat-table" cellspacing="0" cellpadding="0">
+				    <tr>
+					    <th>Identifier</th>
+					    <th>ECMA-262-1</th>
+					    <th>ECMA-262-2</th>
+					    <th>ECMA-262-3</th>
+
+					    <th>ECMA-262-5</th>
+					    <th>ECMA-262-5 strict mode</th>
+				    </tr>
+				    <tr id="abstract">
+					    <td><a href="#abstract">abstract</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="arguments">			
+					    <td><a href="#arguments">arguments</a></td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="boolean">
+					    <td><a href="#boolean">boolean</a></td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>	
+				    <tr id="break">
+
+					    <td><a href="#break">break</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+				    </tr>		
+				    <tr id="byte">
+					    <td><a href="#byte">byte</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+				    </tr>	
+				    <tr id="case">
+					    <td><a href="#case">case</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>	
+				    <tr id="catch">
+					    <td><a href="#catch">catch</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>		
+				    <tr id="char">
+					    <td><a href="#char">char</a></td>
+					    <td class="yes">Yes</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>		
+				    <tr id="class">
+					    <td><a href="#class">class</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>		
+				    <tr id="const">
+
+					    <td><a href="#const">const</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+				    </tr>	
+				    <tr id="continue">
+					    <td><a href="#continue">continue</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+				    </tr>	
+				    <tr id="debugger">
+					    <td><a href="#debugger">debugger</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>	
+				    <tr id="default">
+					    <td><a href="#default">default</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>	
+				    <tr id="delete">
+					    <td><a href="#delete">delete</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="do">
+					    <td><a href="#do">do</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="double">
+					    <td><a href="#double">double</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="else">			
+					    <td><a href="#else">else</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="enum">			
+					    <td><a href="#enum">enum</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="eval">			
+					    <td><a href="#eval">eval</a></td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>			
+				    <tr id="export">			
+					    <td><a href="#export">export</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="extends">			
+					    <td><a href="#extends">extends</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+				    </tr>
+				    <tr id="final">				
+					    <td><a href="#final">final</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="finally">				
+					    <td><a href="#finally">finally</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="float">				
+					    <td><a href="#float">float</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="for">				
+					    <td><a href="#for">for</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="function">				
+					    <td><a href="#function">function</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="goto">				
+					    <td><a href="#goto">goto</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+				    </tr>
+				    <tr id="if">				
+					    <td><a href="#if">if</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="implements">				
+					    <td><a href="#implements">implements</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="import">				
+					    <td><a href="#import">import</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="in">				
+					    <td><a href="#in">in</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="instanceof">				
+					    <td><a href="#instanceof">instanceof</a></td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="int">				
+					    <td><a href="#int">int</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+				    </tr>
+				    <tr id="interface">				
+					    <td><a href="#interface">interface</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="let">				
+					    <td><a href="#let">let</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="long">				
+					    <td><a href="#long">long</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="native">				
+					    <td><a href="#native">native</a></td>
+					    <td class="yes">Yes</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="new">				
+					    <td><a href="#new">new</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="package">				
+					    <td><a href="#package">package</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+				    </tr>
+				    <tr id="private">				
+					    <td><a href="#private">private</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="protected">				
+					    <td><a href="#protected">protected</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="public">				
+					    <td><a href="#public">public</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="return">				
+					    <td><a href="#return">return</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="short">				
+					    <td><a href="#short">short</a></td>
+
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+
+				    <tr id="static">				
+					    <td><a href="#static">static</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+				    </tr>
+				    <tr id="super">				
+					    <td><a href="#super">super</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="switch">				
+					    <td><a href="#switch">switch</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="synchronized">				
+					    <td><a href="#synchronized">synchronized</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="this">				
+					    <td><a href="#this">this</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="throw">				
+					    <td><a href="#throw">throw</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="throws">				
+					    <td><a href="#throws">throws</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+				    </tr>
+				    <tr id="transient">				
+					    <td><a href="#transient">transient</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+				    </tr>
+				    <tr id="try">				
+					    <td><a href="#try">try</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="typeof">				
+					    <td><a href="#typeof">typeof</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="var">				
+					    <td><a href="#var">var</a></td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="void">				
+					    <td><a href="#void">void</a></td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+
+				    <tr id="volatile">				
+					    <td><a href="#volatile">volatile</a></td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+				    </tr>
+				    <tr id="while">				
+					    <td><a href="#while">while</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="with">				
+					    <td><a href="#with">with</a></td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+
+					    <td class="no">No</td>
+					    <td class="no">No</td>
+				    </tr>
+				    <tr id="yield">				
+					    <td><a href="#yield">yield</a></td> 
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+
+					    <td class="yes">Yes</td>
+					    <td class="yes">Yes</td>
+					    <td class="no">No</td>
+				    </tr>																															
+			    </table>
+
+
